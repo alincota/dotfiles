@@ -4,3 +4,19 @@
 function mkd() {
     mkdir -p "$@" && cd "$@"
 }
+
+### Transmission ###
+# TODO: add checks to make sure variables are set
+# "$TRANSMISSION_USER:$TRANSMISSION_PASS"
+function t-list() {
+    transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -l
+}
+
+function t-basicstats() {
+    transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -st
+}
+
+function t-fullstats() {
+    transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -si
+}
+####################
