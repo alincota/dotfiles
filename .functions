@@ -7,7 +7,18 @@ function mkd() {
 
 ### Transmission ###
 # TODO: add checks to make sure variables are set
-# "$TRANSMISSION_USER:$TRANSMISSION_PASS"
+function t-add() {
+    transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -a $1
+}
+
+# TODO: consider merging start/ stop functionality for ease of use
+function t-start-torrent() {
+    transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -t$1 --start
+}
+function t-stop-torrent() {
+    transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -t$1 --stop
+}
+
 function t-list() {
     transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -l
 }
