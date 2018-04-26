@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Navigation
 alias ..="cd .."
 alias ...="cd ../.."
