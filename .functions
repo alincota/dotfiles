@@ -6,28 +6,62 @@ function mkd() {
 }
 
 ### Transmission ###
-# TODO: add checks to make sure variables are set
+function _checkTransmissionCredentials() {
+    if [ -z "${TRANSMISSION_USER}" ] || [ -z "${TRANSMISSION_PASS}" ]; then
+        echo "Transmission credentials are not set!"
+        echo "Add to ~/.extra Transmission's credentials: 'TRANSMISSION_USER' and 'TRANSMISSION_PASS'"
+
+        return 1;
+    fi
+
+    return 0;
+}
+
 function t-add() {
+    if ! _checkTransmissionCredentials; then
+        return 1;
+    fi
+
     transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -a $1
 }
 
 # TODO: consider merging start/ stop functionality for ease of use
 function t-start-torrent() {
+    if ! _checkTransmissionCredentials; then
+        return 1;
+    fi
+
     transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -t$1 --start
 }
 function t-stop-torrent() {
+    if ! _checkTransmissionCredentials; then
+        return 1;
+    fi
+
     transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -t$1 --stop
 }
 
 function t-list() {
+    if ! _checkTransmissionCredentials; then
+        return 1;
+    fi
+
     transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -l
 }
 
 function t-basicstats() {
+    if ! _checkTransmissionCredentials; then
+        return 1;
+    fi
+
     transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -st
 }
 
 function t-fullstats() {
+    if ! _checkTransmissionCredentials; then
+        return 1;
+    fi
+
     transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -si
 }
 ####################
