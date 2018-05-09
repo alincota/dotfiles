@@ -17,6 +17,14 @@ function _checkTransmissionCredentials() {
     return 0;
 }
 
+function t-do() {
+    if ! _checkTransmissionCredentials; then
+        return 1;
+    fi
+
+    transmission-remote -n "$TRANSMISSION_USER:$TRANSMISSION_PASS" -t$1 $@
+}
+
 function t-add() {
     if ! _checkTransmissionCredentials; then
         return 1;
