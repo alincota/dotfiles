@@ -33,5 +33,5 @@ set title
 " Enable line numbers
 set number
 " Use UTF-8 without BOM marker
-set encoding=utf-8 nobom
+set encoding=utf-8 nobomb
 " ==
