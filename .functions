@@ -5,6 +5,39 @@ function mkd() {
     mkdir -p "$@" && cd "$@"
 }
 
+function getPackageStatus() {
+    dpkg-query -W -f='${Package} | ${Status} ${Version}\n' $@
+}
+
+# Utility to check commands exist
+function _commandExists() {
+    if ! [ -x "$(command -v $1)" ]; then
+        echo "Error: $1 is not installed." >&2
+
+        return 1;
+    fi
+
+    return 0;
+}
+
+function reverseDNS() {
+    if ! _commandExists nmap; then
+        return 1;
+    fi
+
+    nmap -sL $1
+}
+
+# TODO: check _commandExists
+function getCertificateAlternativeNames() {
+    openssl x509 -in $1 -noout -text | grep -A 1 "Subject Alternative Name" 
+}
+
+# TODO: check _commandExists
+function getEmbeddedMetadata() {
+    exiftool -s -s -f -m -d "%Y-%m-%d %H:%M:%S" -G $1
+}
+
 ### Transmission ###
 function _checkTransmissionCredentials() {
     if [ -z "${TRANSMISSION_USER}" ] || [ -z "${TRANSMISSION_PASS}" ]; then
