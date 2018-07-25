@@ -28,13 +28,27 @@ function reverseDNS() {
     nmap -sL $1
 }
 
-# TODO: check _commandExists
 function getCertificateAlternativeNames() {
+    if ! _commandExists openssl; then
+        return 1;
+    fi
+
     openssl x509 -in $1 -noout -text | grep -A 1 "Subject Alternative Name" 
 }
 
-# TODO: check _commandExists
+function generateRandomPassword() {
+    if ! _commandExists openssl; then
+        return 1;
+    fi
+
+    openssl rand -base64 32
+}
+
 function getEmbeddedMetadata() {
+    if ! _commandExists exiftool; then
+        return 1;
+    fi
+
     exiftool -s -s -f -m -d "%Y-%m-%d %H:%M:%S" -G $1
 }
 
