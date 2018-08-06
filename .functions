@@ -9,6 +9,11 @@ function getPackageStatus() {
     dpkg-query -W -f='${Package} | ${Status} ${Version}\n' $@
 }
 
+# Check dependend packages (reverse dependencies)
+function getDependentPackages() {
+    apt-cache rdepends $@
+}
+
 # Utility to check commands exist
 function _commandExists() {
     if ! [ -x "$(command -v $1)" ]; then
