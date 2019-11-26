@@ -6,7 +6,6 @@ set undodir=~/.vim/undo
 " Soft tabs
 " =========
 set tabstop=4
-" Change the number of space characters inserted for indentation
 set shiftwidth=4
 set expandtab
 " Note - if you want to enter a real tab character use Ctrl-V<Tab> key sequence
@@ -19,19 +18,16 @@ syntax on
 " TODO: consider removing as by default this is a line and can be bad when editing
 " code which contains variables that use underscore (_). You can barely distinguish it.
 set cursorline
+hi CursorLine term=bold cterm=bold guibg=Grey40
 " Highlighting search matches and ignore case of searches
 set hlsearch ignorecase
-" Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
-" ===
-
 " General
 " =======
 " Show the filename in the window titlebar
 set title
 " Enable line numbers
 set number
+set relativenumber
 " Use UTF-8 without BOM marker
 set encoding=utf-8 nobomb
 " ==
