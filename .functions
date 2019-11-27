@@ -57,6 +57,18 @@ function getEmbeddedMetadata() {
     exiftool -s -s -f -m -d "%Y-%m-%d %H:%M:%S" -G $1
 }
 
+# Enable faster acceleration for mouse keys
+# xkbset ma [delay] [interval] [time to max] [max speed] [curve]
+# NOTE: mouse keys need to be enabled before xkbset is called. @see https://askubuntu.com/questions/113171/turn-mousekeys-on-off-from-keyboard
+function mousekeys() {
+    if ! _commandExists xkbset; then
+        return 1;
+    fi
+
+    xkbset ma 60 10 20 10 10
+}
+
+# @todo: move transmission related functions to a separate file
 ### Transmission ###
 function _checkTransmissionCredentials() {
     if [ -z "${TRANSMISSION_USER}" ] || [ -z "${TRANSMISSION_PASS}" ]; then
