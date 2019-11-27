@@ -58,14 +58,22 @@ function getEmbeddedMetadata() {
 }
 
 # Enable faster acceleration for mouse keys
-# xkbset ma [delay] [interval] [time to max] [max speed] [curve]
-# NOTE: mouse keys need to be enabled before xkbset is called. @see https://askubuntu.com/questions/113171/turn-mousekeys-on-off-from-keyboard
 function mousekeys() {
-    if ! _commandExists xkbset; then
+    if  ! _commandExists gsettings || ! _commandExists xkbset ; then
         return 1;
     fi
 
-    xkbset ma 60 10 20 10 10
+    MK_STATUS=$(gsettings get org.gnome.desktop.a11y.keyboard mousekeys-enable)
+
+    if [ "$MK_STATUS" == "true" ]; then
+        gsettings set org.gnome.desktop.a11y.keyboard mousekeys-enable false
+        notify-send "Mousekeys OFF"
+    else
+        gsettings set org.gnome.desktop.a11y.keyboard mousekeys-enable true
+        # xkbset ma [delay] [interval] [time to max] [max speed] [curve]
+        xkbset ma 60 10 20 10 10
+        notify-send "Mousekeys ON"
+    fi
 }
 
 # @todo: move transmission related functions to a separate file
