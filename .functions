@@ -57,6 +57,15 @@ function getEmbeddedMetadata() {
     exiftool -s -s -f -m -d "%Y-%m-%d %H:%M:%S" -G $1
 }
 
+function cleanEmbeddedMetadata() {
+    if ! _commandExists exiftool; then
+        return 1;
+    fi
+
+    # check exiftool -all= -overwrite_original -E -gps:all= -EXIF:all= -XMP:all= -IPTC:all= $1
+    exiftool -m -overwrite_original -E -gps:all= -EXIF:all= -XMP:all= -IPTC:all= $1
+}
+
 # Enable faster acceleration for mouse keys
 function mousekeys() {
     if  ! _commandExists gsettings || ! _commandExists xkbset ; then
