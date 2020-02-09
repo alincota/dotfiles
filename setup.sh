@@ -2,7 +2,9 @@
 
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Set up VIM
 mkdir -p ~/.vim/{backups,swaps,undo,colors}
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Create symlinks
 ln -svf "$DOTFILES_DIR/.bash_aliases" ~/.bash_aliases
