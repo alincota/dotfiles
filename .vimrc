@@ -52,6 +52,7 @@ set wildignore+=*.min.*                     " minified versions of files (e.g JS
 " PLUGINS {{{
 " =======
 call plug#begin('~/.vim/plugged')
+Plug 'crusoexia/vim-monokai'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
