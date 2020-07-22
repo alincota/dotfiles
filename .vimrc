@@ -1,6 +1,5 @@
 " GENERAL {{{
 " =======
-colorscheme monokai
 set nocompatible            " Vim only compatible
 set title                   " show the filename in the window titlebar
 set number                  " enable line numbers
@@ -52,6 +51,7 @@ set wildignore+=*.min.*                     " minified versions of files (e.g JS
 " PLUGINS {{{
 " =======
 call plug#begin('~/.vim/plugged')
+Plug 'crusoexia/vim-monokai'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
@@ -61,12 +61,15 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'rust-lang/rust.vim'
 " Plug 'majutsushi/tagbar'    " Plugin that provides an easy way to browse the tags of the current file and get an overview of its structure
 " Plug 'vim-vdebug/vdebug'    " Plugin that offers debugger client for Vim. It interfaces with any debugger that faithfully uses the DBGP protocol, such as Xdebug for PHP
 
 " PHP specific plugins
 Plug 'StanAngeloff/php.vim' " Not sure this is working very well for the RS
 call plug#end()
+
+colorscheme monokai
 " }}}
 
 " CUSTOM MAPPINGS {{{
