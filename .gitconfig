@@ -1,0 +1,9 @@
+[user]
+	name = Alin Cota
+	email = alincota@users.noreply.github.com
+
+[core]
+    editor = vim
+
+[color]
+    ui = auto
