@@ -12,8 +12,9 @@ ln -svf "$DOTFILES_DIR/.bash_prompt" ~/.bash_prompt
 ln -svf "$DOTFILES_DIR/.bash_profile" ~/.bash_profile
 ln -svf "$DOTFILES_DIR/.functions" ~/.functions
 ln -svf "$DOTFILES_DIR/.vimrc" ~/.vimrc
+ln -svf "$DOTFILES_DIR/.gitconfig" ~/.gitconfig
 
-if ! _commandExists git; then
+if ! [ -x "$(command -v git)" ]; then
     return 1;
 fi
 
