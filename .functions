@@ -5,6 +5,10 @@ function mkd() {
     mkdir -p "$@" && cd "$@"
 }
 
+function cheatmd() {
+    cheat "$@" | mdless
+}
+
 function getPackageStatus() {
     dpkg-query -W -f='${Package} | ${Status} ${Version}\n' $@
 }
