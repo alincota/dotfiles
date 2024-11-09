@@ -29,6 +29,11 @@ function _commandExists() {
     return 0;
 }
 
+function url_locations() {
+    local URL="$1";
+    curl --silent -I -L "${URL}" | grep -i "location";
+}
+
 function reverseDNS() {
     if ! _commandExists nmap; then
         return 1;
